@@ -1,2 +1,2 @@
 #!/bin/bash
-wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.0.1-stable.tar.xz && tar xf flutter_linux_3.0.1-stable.tar.xz && ./flutter/bin/flutter sdk-path && ./flutter/bin/flutter doctor && ./flutter/bin/flutter build web
+wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.0.1-stable.tar.xz && tar xf flutter_linux_3.0.1-stable.tar.xz && ./flutter/bin/flutter doctor && ./flutter/bin/flutter build web
