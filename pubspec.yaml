@@ -1,5 +1,5 @@
-name: valorstuff
-description: A new Flutter project.
+name: ValorStuff
+description: An app to help your VALORANT experiance on the go!
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -34,6 +34,16 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  http: ^0.13.4
+  icons_launcher: ^1.1.8
+
+flutter_icons:
+  android: true
+  ios: true
+  web: true
+  image_path: "assets/icon/full.png"
+  adaptive_icon_foreground: "assets/icon/foreground.png"
+  adaptive_icon_background: "#000000"
 
 dev_dependencies:
   flutter_test:

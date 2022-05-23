@@ -1,4 +1,4 @@
-package com.example.valorstuff
+package com.voltadigital.valorstuff
 
 import io.flutter.embedding.android.FlutterActivity
 
