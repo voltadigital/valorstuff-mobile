@@ -45,7 +45,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         Text('Craft beautiful UIs'),
         Expanded(
           child: FittedBox(
-            fit: BoxFit.contain, // otherwise the logo will be tiny
+            fit: BoxFit.contain,
             child: FlutterLogo(),
           ),
         ),
