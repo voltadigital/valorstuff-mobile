@@ -28,7 +28,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     Text(
       'Shop00',
       style:
@@ -39,11 +39,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       style:
           TextStyle(fontFamily: 'NotoSans', color: Colors.black, fontSize: 35),
     ),
-    Text(
-      'Account02',
-      style:
-          TextStyle(fontFamily: 'NotoSans', color: Colors.black, fontSize: 35),
-    ),
+    Column(
+      children: const <Widget>[
+        Text('Deliver features faster'),
+        Text('Craft beautiful UIs'),
+        Expanded(
+          child: FittedBox(
+            fit: BoxFit.contain, // otherwise the logo will be tiny
+            child: FlutterLogo(),
+          ),
+        ),
+      ],
+    )
   ];
 
   void _onItemTapped(int index) {
