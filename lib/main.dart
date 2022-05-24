@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(const MyApp());
 
@@ -42,7 +42,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     Column(
       children: const <Widget>[
         Text('Deliver features faster'),
-        Text('Craft beautiful UIs'),
+        Text('Craft beautiful UI'),
         Expanded(
           child: FittedBox(
             fit: BoxFit.contain,
