@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "982566218126",
+    "project_id": "valorstuff-3261b",
+    "storage_bucket": "valorstuff-3261b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982566218126:android:50809653f508eb558edcdf",
+        "android_client_info": {
+          "package_name": "com.voltadigital.valorstuff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982566218126-c7vfqe8188ghg19c79kkig4o2r2sp81n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClTrfaVYDUp2mO2MVvAIGh-cNpHKJXOzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982566218126-c7vfqe8188ghg19c79kkig4o2r2sp81n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "982566218126-isq8iucgbu9mk06sifptf45khuke3p01.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.valorstuff"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

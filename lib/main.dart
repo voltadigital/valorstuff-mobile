@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'firebase_options.dart';
 
 void main() => runApp(const MyApp());
 
@@ -63,6 +64,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       _selectedIndex = index;
     });
   }
+
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
 
   @override
   Widget build(BuildContext context) {
