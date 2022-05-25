@@ -65,12 +65,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     });
   }
 
-await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
-
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
