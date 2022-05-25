@@ -23,10 +23,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -65,5 +62,15 @@ class DefaultFirebaseOptions {
     messagingSenderId: '982566218126',
     projectId: 'valorstuff-3261b',
     storageBucket: 'valorstuff-3261b.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDobwdDkPJ0TjnxwKqOzUF6xplT9ifOBPM',
+    appId: '1:982566218126:ios:55ec954936648ec48edcdf',
+    messagingSenderId: '982566218126',
+    projectId: 'valorstuff-3261b',
+    storageBucket: 'valorstuff-3261b.appspot.com',
+    iosClientId: '982566218126-a5t4nd16knbeqqf1dmh3932t3cmf5vjk.apps.googleusercontent.com',
+    iosBundleId: 'com.voltadigital.valorstuff',
   );
 }
