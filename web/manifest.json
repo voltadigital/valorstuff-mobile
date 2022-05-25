@@ -1,11 +1,11 @@
 {
-    "name": "valorstuff",
-    "short_name": "valorstuff",
+    "name": "ValorStuff",
+    "short_name": "ValorStuff",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#000000",
+    "theme_color": "#eb4034",
+    "description": "An easy way to check valorant shop and match history!",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

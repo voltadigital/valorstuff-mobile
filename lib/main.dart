@@ -10,8 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: _title,
+      theme: new ThemeData(scaffoldBackgroundColor: const Color(0xFFEFEFEF)),
       home: MyStatefulWidget(),
     );
   }
@@ -28,21 +29,25 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static List<Widget> _widgetOptions = <Widget>[
     Text(
       'Shop00',
       style:
-          TextStyle(fontFamily: 'NotoSans', color: Colors.black, fontSize: 35),
+          TextStyle(fontFamily: 'NotoSans', color: Colors.white, fontSize: 35),
     ),
     Text(
       'Matches01',
       style:
-          TextStyle(fontFamily: 'NotoSans', color: Colors.black, fontSize: 35),
+          TextStyle(fontFamily: 'NotoSans', color: Colors.white, fontSize: 35),
     ),
     Column(
       children: const <Widget>[
-        Text('Deliver features faster'),
-        Text('Craft beautiful UI'),
+        Text(
+          'Deliver features faster',
+          style: TextStyle(
+              fontFamily: 'NotoSans', color: Colors.white, fontSize: 40),
+        ),
         Expanded(
           child: FittedBox(
             fit: BoxFit.contain,
@@ -74,6 +79,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ),
         centerTitle: true,
       ),
+      backgroundColor: Colors.black,
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
