@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
+import 'dart:convert';
 
 void main() async {
   runApp(const MyApp());
@@ -41,11 +43,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static List<Widget> _widgetOptions = <Widget>[
     Text(
       'Shop00',
+      textAlign: TextAlign.right,
       style:
           TextStyle(fontFamily: 'NotoSans', color: Colors.white, fontSize: 35),
     ),
     Text(
       'Matches01',
+      textAlign: TextAlign.left,
       style:
           TextStyle(fontFamily: 'NotoSans', color: Colors.white, fontSize: 35),
     ),
@@ -53,6 +57,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       children: const <Widget>[
         Text(
           'Deliver features faster',
+          textAlign: TextAlign.center,
           style: TextStyle(
               fontFamily: 'NotoSans', color: Colors.white, fontSize: 40),
         ),
