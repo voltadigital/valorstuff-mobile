@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'login.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -36,6 +37,21 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  late Future<bool> _loginstatus;
+
+  Future<void> _incrementCounter() async {
+    final SharedPreferences prefs = await _prefs;
+    final bool loginstatus = (prefs.getBool('loginstatus') ?? false);
+
+    setState(() {
+      _loginstatus =
+          prefs.setBool('loginstatus', loginstatus).then((bool success) {
+        return loginstatus;
+      });
+    });
+  }
+
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
