@@ -6,10 +6,12 @@ bottomNavigationBar: BottomNavigationBar(
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.clear_all),
+            icon: "local_mall"
             label: 'Matches',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
+            
             label: 'Account',
           ),
         ],
