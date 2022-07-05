@@ -4,9 +4,11 @@ workflows:
     scripts:
       - name: Setup Bulldozer
         script: |
+                  python3 -m pip install --upgrade pip
                   pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv
-                  yes | ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager --install "build-tools;29.0.0"
+                  yes | sdkmanager --install "build-tools;29.0.0"
                   ls
+                  
       - name: Run Buildozer
         script: |
                   buildozer android release
