@@ -16,6 +16,7 @@ import warnings
 from typing import Dict, List, Optional, Sequence, Tuple, Union
 from urllib.parse import parse_qsl, urlsplit
 import aiohttp
+import asynckivy as ak
 
 class MainWindow(Screen):
     pass
@@ -30,7 +31,7 @@ class WindowManager(ScreenManager):
 
 class App(MDApp):
 
-    def build(self):
+    async def build(self):
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.material_style = "M3"
         return Builder.load_string(
@@ -105,6 +106,7 @@ WindowManager:
             helper_text_mode: "persistent"
             hint_text: "Riot Password"
             halign: 'center'
+            password: True
             size_hint : 0.4, 0.1
             pos_hint : {"x":0.3, "top":0.55}
         MDFlatButton:
@@ -115,7 +117,7 @@ WindowManager:
             size_hint : 0.25, 0.1
             pos_hint : {"x":0.375, "top":0.45}
             on_release:
-                app.confirm_creds(user=user.text, passwd=passwd.text)
+                await app.confirm_creds(user=user.text, passwd=passwd.text)
                 root.manager.transition.direction = "down"
 
 <LoadingPopup>:
@@ -132,21 +134,18 @@ WindowManager:
  
 '''
     )
-    def confirm_creds(self, user, passwd):
+    async def confirm_creds(self, user, passwd):
         print('userid')
         print(user)
         print('pass')
         print(passwd)
 
-        if passwd == '':
-            return Snackbar(text='Empty Password').open()
-        
         if user == '':
             return Snackbar(text='Empty Username').open()
         
+        if passwd == '':
+            return Snackbar(text='Empty Password').open()
         
-
-
         class RiotAuth:
             RIOT_CLIENT_USER_AGENT = (
                 "RiotClient/53.0.0.4494832.4470164 %s (Windows;10;;Professional, x64)"
@@ -319,6 +318,8 @@ WindowManager:
                         data: Dict = await r.json()
                         type_ = data["type"]
                         if type_ == "response":
+                            os.environ['vuser'] = username
+                            os.environ['vpass'] = password
                             return WindowManager.switch_to(MainWindow, direction='up')
                         elif type_ == "auth":
                             return Snackbar(text='Incorrect Password').open()
@@ -330,5 +331,9 @@ WindowManager:
                             raise NotImplementedError(
                                 f"Unhandled type returned during authentication: `{type_}`."
                             )
+        auth = RiotAuth()
 
-asyncio.run(App().async_run())
+        auth = await auth.authorize(username=user, password=passwd)
+
+
+asyncio.run(App().async_run(async_lib='asyncio'))
