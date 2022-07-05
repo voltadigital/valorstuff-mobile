@@ -4,5 +4,5 @@ workflows:
     scripts:
       - name: Setup Bulldozer
         script: |
-                  pip3 install --user --upgrade buildozer
+                  pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy
                   buildozer -v android debug
