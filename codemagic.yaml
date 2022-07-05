@@ -6,4 +6,8 @@ workflows:
         script: |
                   pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv
                   buildozer android release
-                  
+                  ls
+                  ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager "build-tools;29.0.0"
+                  sleep 10
+                  echo "y"
+
