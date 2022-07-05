@@ -1,9 +1,9 @@
-import imp
-from this import d
+from cgitb import text
 from kivy.lang import Builder
 import os
 from kivymd.app import MDApp
-from  kivymd.uix.snackbar import Snackbar
+from kivymd.uix.label import Label
+from kivymd.uix.snackbar import Snackbar
 from kivy.uix.screenmanager import ScreenManager, Screen
 import asyncio
 import base64
@@ -31,7 +31,7 @@ class WindowManager(ScreenManager):
 
 class App(MDApp):
 
-    async def build(self):
+    def build(self):
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.material_style = "M3"
         return Builder.load_string(
@@ -39,9 +39,9 @@ class App(MDApp):
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 
 WindowManager:
-    MainWindow:
     LoginWindow:
-
+    MainWindow:
+    
 <MainWindow>:
     name: 'main'
     MDBottomNavigation:
@@ -117,7 +117,7 @@ WindowManager:
             size_hint : 0.25, 0.1
             pos_hint : {"x":0.375, "top":0.45}
             on_release:
-                await app.confirm_creds(user=user.text, passwd=passwd.text)
+                app.confirm_creds(user=user.text, passwd=passwd.text)
                 root.manager.transition.direction = "down"
 
 <LoadingPopup>:
@@ -134,7 +134,7 @@ WindowManager:
  
 '''
     )
-    async def confirm_creds(self, user, passwd):
+    def confirm_creds(self, user, passwd):
         print('userid')
         print(user)
         print('pass')
@@ -189,7 +189,6 @@ WindowManager:
                     "rsa_pkcs1_sha1",  # will get ignored and won't be negotiated
                 )
             )
-
             def __init__(self) -> None:
                 self._auth_ssl_ctx = RiotAuth.create_riot_auth_ssl_ctx()
                 self.access_token: Optional[str] = None
@@ -199,7 +198,6 @@ WindowManager:
                 self.expires_at: int = 0
                 self.user_id: Optional[str] = None
                 self.entitlements_token: Optional[str] = None
-
             @staticmethod
             def create_riot_auth_ssl_ctx() -> ssl.SSLContext:
                 ssl_ctx = ssl.create_default_context()
@@ -318,22 +316,28 @@ WindowManager:
                         data: Dict = await r.json()
                         type_ = data["type"]
                         if type_ == "response":
-                            os.environ['vuser'] = username
-                            os.environ['vpass'] = password
-                            return WindowManager.switch_to(MainWindow, direction='up')
+                            return Label(text='[color=ffffff]LOL GETT CREDS STOLEN!!', halign="center",markup = True)
                         elif type_ == "auth":
-                            return Snackbar(text='Incorrect Password').open()
+                           return Snackbar(text='Incorrect Creds').open()
                         elif type_ == "multifactor":
-                            raise NotImplementedError(
-                                "Multifactor authentication is not supported."
-                            )
+                            return Snackbar(text='Mulitfactor Authenticon is not yet supported').open()
                         else:
-                            raise NotImplementedError(
-                                f"Unhandled type returned during authentication: `{type_}`."
-                            )
-        auth = RiotAuth()
+                            return Snackbar(text='Unkown Error Occured').open()
 
-        auth = await auth.authorize(username=user, password=passwd)
+                    
 
+        if __name__ == "__main__":
+            import asyncio
 
-asyncio.run(App().async_run(async_lib='asyncio'))
+            # region Workaround for Windows, remove below 3.8 or above 3.11 beta 1
+            if sys.platform == "win32":
+                asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+            # endregion
+
+            CREDS = user, passwd
+
+            auth = RiotAuth()
+            return asyncio.run(auth.authorize(*CREDS))
+        
+
+App().run()
