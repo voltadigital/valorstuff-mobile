@@ -4,5 +4,7 @@ workflows:
     scripts:
       - name: Setup Bulldozer
         script: |
-                  pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy
+                  sudo apt update
+                  sudo apt install -y git zip unzip openjdk-13-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+                  pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv
                   buildozer -v android debug
