@@ -5,6 +5,4 @@ workflows:
       - name: Setup Bulldozer
         script: |
                   pip3 install --user --upgrade buildozer
-                  
-        
-      
+                  buildozer -v android debug
