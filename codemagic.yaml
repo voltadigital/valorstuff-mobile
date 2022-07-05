@@ -2,15 +2,9 @@ workflows:
   my-workflow:
     instance_type: mac_mini
     scripts:
-      - name: Install Homebrew and Prepare Pip/Python
-        script: |
-                 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-                 brew install python
-                 ls
-                 cd ./Homebrew/
-                 ls
       - name: Setup Bulldozer
         script: |
-                  echo
+                  pip3 install --user --upgrade buildozer
+                  
         
       
