@@ -4,12 +4,24 @@ workflows:
     scripts:
       - name: Setup Bulldozer and load Android SDK
         script: |
+                  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                  sudo ln -sfn /usr/local/opt/openssl /usr/local/ssl
+                  brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
                   python3 -m pip install --upgrade pip
-                  pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv
-                  yes | sdkmanager --install "build-tools;29.0.0"
+                  pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv kivy-ios
                   rsync -a /usr/local/share/android-sdk/. /Users/builder/.buildozer/android/platform/android-sdk
                   ls
                   
       - name: Run Buildozer
         script: |
                   buildozer android release
+    artifacts:
+      - ./bin/*.aab
+      - ./bin/*.apk
+      - ./bin/*.aar
+      - ./bin/*.app
+      - ./bin/*.ipa
+      - ./bin/*.pkg
+      - ./bin/*.jar
+      - ./bin/*.zip
+      - ./bin/*.xarchive
