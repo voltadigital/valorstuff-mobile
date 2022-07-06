@@ -16,13 +16,15 @@ workflows:
                   yes | /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
                   /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "ndk;23.2.8568313"
                   /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "cmake;3.18.1"
-                  sdkmanager --update
+                  /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --update
                   rsync -a /usr/local/share/android-sdk/. /Users/builder/.buildozer/android/platform/android-sdk
                   ls
                   
       - name: Run Buildozer
         script: |
                   buildozer android release
+                  buildozer ios release
+
     artifacts:
       - ./bin/*.aab
       - ./bin/*.apk
