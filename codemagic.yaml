@@ -15,8 +15,7 @@ workflows:
                   mkdir /Users/builder/.buildozer/android/platform/android-sdk
                   yes | /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
                   /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "ndk;23.2.8568313"
-                  /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "cmake;"
-                  /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --list | grep  "cmake"
+                  /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "cmake;3.18.1"
                   sdkmanager --update
                   rsync -a /usr/local/share/android-sdk/. /Users/builder/.buildozer/android/platform/android-sdk
                   ls
