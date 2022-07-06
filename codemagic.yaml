@@ -19,9 +19,12 @@ workflows:
                   mkdir /Users/builder/.buildozer/android 
                   mkdir /Users/builder/.buildozer/android/platform 
                   mkdir /Users/builder/.buildozer/android/platform/android-sdk
+                  rm -r $HOME/programs/flutter
+                  rm /Applications/Xcode-13.3.app
+                  rm /Applications/Xcode-14.0.app
+                  rm /Users/builder/.android/avd/emulator.avd
                   echo "----------------------------------------------------------------------------------"
                   yes | /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
-                  /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "ndk;23.2.8568313"
                   echo "----------------------------------------------------------------------------------"
                   /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "cmake;3.18.1"
                   echo "----------------------------------------------------------------------------------"
