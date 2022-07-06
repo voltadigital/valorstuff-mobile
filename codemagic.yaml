@@ -12,4 +12,5 @@ workflows:
       - name: Run Buildozer
         script: |
                   buildozer android release
+                  ls
                   echo 'done?'
