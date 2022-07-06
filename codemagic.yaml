@@ -5,24 +5,36 @@ workflows:
       - name: Setup Bulldozer and load Android SDK
         script: |
                   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                  echo "----------------------------------------------------------------------------------"
                   sudo ln -sfn /usr/local/opt/openssl /usr/local/ssl
+                  echo "----------------------------------------------------------------------------------"
                   brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
+                  echo "----------------------------------------------------------------------------------"
                   python3 -m pip install --upgrade pip
+                  echo "----------------------------------------------------------------------------------"
                   pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv kivy-ios
+                  echo "----------------------------------------------------------------------------------"
+                  echo "MKDIR"
                   mkdir /Users/builder/.buildozer
                   mkdir /Users/builder/.buildozer/android 
                   mkdir /Users/builder/.buildozer/android/platform 
                   mkdir /Users/builder/.buildozer/android/platform/android-sdk
+                  echo "----------------------------------------------------------------------------------"
                   yes | /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
                   /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "ndk;23.2.8568313"
+                  echo "----------------------------------------------------------------------------------"
                   /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "cmake;3.18.1"
+                  echo "----------------------------------------------------------------------------------"
                   /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --update
+                  echo "----------------------------------------------------------------------------------"
                   rsync -a /usr/local/share/android-sdk/. /Users/builder/.buildozer/android/platform/android-sdk
+                  echo "----------------------------------------------------------------------------------"
                   ls
                   
       - name: Run Buildozer
         script: |
                   buildozer android release
+                  echo "----------------------------------------------------------------------------------"
                   buildozer ios release
 
     artifacts:
