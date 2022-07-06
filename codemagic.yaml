@@ -9,7 +9,10 @@ workflows:
                   brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
                   python3 -m pip install --upgrade pip
                   pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv kivy-ios
-                  mkdir /Users/builder/.buildozer && mkdir /Users/builder/.buildozer/android && mkdir /Users/builder/.buildozer/platform && mkdir /Users/builder/.buildozer/platform/android-sdk
+                  mkdir /Users/builder/.buildozer
+                  mkdir /Users/builder/.buildozer/android 
+                  mkdir /Users/builder/.buildozer/android/platform 
+                  mkdir /Users/builder/.buildozer/android/platform/android-sdk
                   rsync -a /usr/local/share/android-sdk/. /Users/builder/.buildozer/android/platform/android-sdk
                   ls
                   
