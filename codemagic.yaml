@@ -13,6 +13,10 @@ workflows:
                   mkdir /Users/builder/.buildozer/android 
                   mkdir /Users/builder/.buildozer/android/platform 
                   mkdir /Users/builder/.buildozer/android/platform/android-sdk
+                  yes | /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+                  /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "ndk"
+                  /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "cmake"
+                  sdkmanager --update
                   rsync -a /usr/local/share/android-sdk/. /Users/builder/.buildozer/android/platform/android-sdk
                   ls
                   
