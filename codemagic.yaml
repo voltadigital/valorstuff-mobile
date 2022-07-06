@@ -12,9 +12,3 @@ workflows:
       - name: Run Buildozer
         script: |
                   buildozer android release
-                  echo 'Current'
-                  ls 
-                  echo 'SDK'
-                  ls /usr/local/share/android-sdk
-                  echo 'buildtools'
-                  ls /usr/local/share/android-sdk/build-tools/20.0.0
