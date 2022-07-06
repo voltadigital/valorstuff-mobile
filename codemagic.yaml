@@ -2,11 +2,12 @@ workflows:
   my-workflow:
     instance_type: mac_mini
     scripts:
-      - name: Setup Bulldozer
+      - name: Setup Bulldozer and load Android SDK
         script: |
                   python3 -m pip install --upgrade pip
                   pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv
                   yes | sdkmanager --install "build-tools;29.0.0"
+                  cp -a /usr/local/share/android-sdk/. /Users/builder/.buildozer/android/platform/android-sdk
                   ls
                   
       - name: Run Buildozer
