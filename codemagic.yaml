@@ -2,7 +2,7 @@ workflows:
   my-workflow:
     instance_type: mac_mini
     scripts:
-      - name: Setup Bulldozer and load Android SDK
+      - name: Download Required Packages
         script: |
                   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
                   echo "----------------------------------------------------------------------------------"
@@ -14,22 +14,32 @@ workflows:
                   echo "----------------------------------------------------------------------------------"
                   pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv kivy-ios
                   echo "----------------------------------------------------------------------------------"
+        
+      - name: Create Folders
+        script: |
                   echo "MKDIR"
                   mkdir /Users/builder/.buildozer
                   mkdir /Users/builder/.buildozer/android 
                   mkdir /Users/builder/.buildozer/android/platform 
                   mkdir /Users/builder/.buildozer/android/platform/android-sdk
+                  
+      
+      - name: Remove Unused Files
+        script: |
                   rm -r $HOME/programs/flutter
                   rm /Applications/Xcode-13.3.app
                   rm /Applications/Xcode-14.0.app
                   rm /Users/builder/.android/avd/emulator.avd
+
+      - name: Load Android SDK
+        script: |
                   echo "----------------------------------------------------------------------------------"
                   yes | /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk platform-tools && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk --install "cmake;3.18.1" && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --update || { echo 'ANDROID SDK UPDATES FAILED' ; exit 1; } 
                   echo "----------------------------------------------------------------------------------"
                   rsync -a /usr/local/share/android-sdk/. /Users/builder/.buildozer/android/platform/android-sdk || { echo 'RSYNC FAILIURE' ; exit 1; }
                   echo "----------------------------------------------------------------------------------"
                   ls
-                  
+
       - name: Run Buildozer
         script: |
                   buildozer android release || { echo 'ANDROID FAILIURE' ; exit 1; }
