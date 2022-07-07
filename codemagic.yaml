@@ -1,5 +1,5 @@
 workflows:
-  my-workflow:
+  Build App For IOS and ANDROID:
     instance_type: mac_mini
     scripts:
       - name: Download Required Packages
