@@ -128,7 +128,7 @@ fullscreen = 0
 # (bool) If True, then skip trying to update the Android sdk
 # This can be useful to avoid excess Internet downloads or save time
 # when an update is due and you just want to test/build your package
-# android.skip_update = False
+# android.skip_update = True
 
 # (bool) If True, then automatically accept SDK license
 # agreements. This is intended for automation only. If set to False,
@@ -343,7 +343,7 @@ ios.kivy_ios_branch = master
 #ios.ios_deploy_dir = ../ios_deploy
 # Or specify URL and branch
 ios.ios_deploy_url = https://github.com/phonegap/ios-deploy
-ios.ios_deploy_branch = 1.10.0
+ios.ios_deploy_branch = 1.12.0
 
 # (bool) Whether or not to sign the code
 ios.codesign.allowed = false
