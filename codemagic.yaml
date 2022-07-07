@@ -29,7 +29,7 @@ workflows:
                   rm -r $HOME/programs/flutter
                   rm /Applications/Xcode-13.3.app
                   rm /Applications/Xcode-14.0.app
-                  rm /Users/builder/.android/avd/emulator.avd
+                  rm -r /Users/builder/.android/avd/emulator.avd
 
       - name: Load Android SDK
         script: |
