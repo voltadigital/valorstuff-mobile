@@ -34,11 +34,8 @@ workflows:
       - name: Load Android SDK
         script: |
                   echo "----------------------------------------------------------------------------------"
-                  yes | /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk platform-tools && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk --install "cmake;3.18.1" && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --update || { echo 'ANDROID SDK UPDATES FAILED' ; exit 1; } 
+                  yes | /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk platform-tools && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk --install "cmake;3.18.1" && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk "build-tools" && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --update || { echo 'ANDROID SDK UPDATES FAILED' ; exit 1; } 
                   echo "----------------------------------------------------------------------------------"
-                  rsync -a /usr/local/share/android-sdk/. /Users/builder/.buildozer/android/platform/android-sdk || { echo 'RSYNC FAILIURE' ; exit 1; }
-                  echo "----------------------------------------------------------------------------------"
-                  ls
 
       - name: Run Buildozer
         script: |
