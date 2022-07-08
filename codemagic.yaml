@@ -14,17 +14,6 @@ workflows:
                   echo "----------------------------------------------------------------------------------"
                   pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv kivy-ios
                   echo "----------------------------------------------------------------------------------"
-        
-      - name: Create Folders
-        script: |
-                  echo "MKDIR"
-                  mkdir /Users/builder/.buildozer
-                  mkdir /Users/builder/.buildozer/android 
-                  mkdir /Users/builder/.buildozer/android/platform 
-                  mkdir /Users/builder/.buildozer/android/platform/android-sdk
-                  mkdir /Users/builder/.buildozer/android/platform/android-sdk/tools
-                  mkdir /Users/builder/.buildozer/android/platform/android-sdk/tools/bin
-                  
       
       - name: Remove Unused Files
         script: |
@@ -32,13 +21,6 @@ workflows:
                   rm /Applications/Xcode-13.3.app
                   rm /Applications/Xcode-14.0.app
                   rm -r /Users/builder/.android/avd/emulator.avd
-
-      - name: Load Android SDK
-        script: |
-                  echo "----------------------------------------------------------------------------------"
-                  yes | /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk --licenses && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk platform-tools && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk --install "cmake;3.18.1" && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/Users/builder/.buildozer/android/platform/android-sdk "build-tools;30.0.2" && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --update || { echo 'ANDROID SDK UPDATES FAILED' ; exit 1; } 
-                  echo "----------------------------------------------------------------------------------"
-                  sudo rsync -vua /usr/local/share/android-sdk/tools/ /Users/builder/.buildozer/android/platform/android-sdk/tools
 
       - name: Run Buildozer
         script: |
