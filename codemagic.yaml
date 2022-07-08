@@ -14,7 +14,7 @@ workflows:
                   echo "----------------------------------------------------------------------------------"
                   pip3 install --user --upgrade buildozer cython kivy aiohttp kivymd asynckivy virtualenv kivy-ios
                   echo "----------------------------------------------------------------------------------"
-                  cd ../ && wget https://download.java.net/java/GA/jdk13.0.2/d4173c853231432d94f001e99d882ca7/8/GPL/openjdk-13.0.2_osx-x64_bin.tar.gz && tar xf openjdk-13.0.2_osx-x64_bin.tar.gz && sudo mv jdk-13.jdk /Library/Java/JavaVirtualMachines/ && export  JAVA_HOME= /Library/Java/JavaVirtualMachines/jdk-13.jdk/Contents/Home
+                  cd ../ && wget https://download.java.net/java/GA/jdk13.0.2/d4173c853231432d94f001e99d882ca7/8/GPL/openjdk-13.0.2_osx-x64_bin.tar.gz && tar xf openjdk-13.0.2_osx-x64_bin.tar.gz && sudo mv jdk-13.jdk /Library/Java/JavaVirtualMachines/ && export  JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-13.jdk/Contents/Home
       
       - name: Remove Unused Files
         script: |
@@ -22,6 +22,7 @@ workflows:
                   sudo rm /Applications/Xcode-13.3.app
                   sudo rm /Applications/Xcode-14.0.app
                   sudo rm -r /Users/builder/.android/avd/emulator.avd
+                  sudo rm -r /Library/Java/JavaVirtualMachines/zulu-18.jdk
                   sudo rm -r /Library/Java/JavaVirtualMachines/zulu-16.jdk
                   sudo rm -r /Library/Java/JavaVirtualMachines/zulu-11.jdk
                   sudo rm -r /Library/Java/JavaVirtualMachines/zulu-8.jdk
