@@ -8,7 +8,7 @@ workflows:
                   echo "----------------------------------------------------------------------------------"
                   sudo ln -sfn /usr/local/opt/openssl /usr/local/ssl
                   echo "----------------------------------------------------------------------------------"
-                  brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
+                  brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake openjdk@8
                   echo "----------------------------------------------------------------------------------"
                   python3 -m pip install --upgrade pip
                   echo "----------------------------------------------------------------------------------"
@@ -21,7 +21,11 @@ workflows:
                   rm /Applications/Xcode-13.3.app
                   rm /Applications/Xcode-14.0.app
                   rm -r /Users/builder/.android/avd/emulator.avd
-
+                  rm -r /Library/Java/JavaVirtualMachines/zulu-16.jdk
+                  rm -r /Library/Java/JavaVirtualMachines/zulu-11.jdk
+                  rm -r /Library/Java/JavaVirtualMachines/zulu-8.jdk
+                  java -version
+ 
       - name: Run Buildozer
         script: |
                   buildozer android release || { echo 'ANDROID FAILIURE' ; exit 1; }
