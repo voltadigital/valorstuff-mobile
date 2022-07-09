@@ -30,7 +30,7 @@ workflows:
  
       - name: Run Buildozer
         script: |
-                  export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-8.jdk
+                  export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
                   buildozer android release || { echo 'ANDROID FAILIURE' ; exit 1; }
                   echo "----------------------------------------------------------------------------------"
                   buildozer ios release || { echo 'IOS FAILIURE' ; exit 1; }
