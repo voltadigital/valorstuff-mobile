@@ -1,8 +1,0 @@
-build login screen
-make account screen
-get shop
-get matches 
-loading screens people
-
-
-optimize matches api

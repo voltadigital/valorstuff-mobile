@@ -1,4 +1,0 @@
-kivy
-kivymd
-urllib
-aiohttp
