@@ -1,4 +1,3 @@
 .next/trace
 .next
 node_modules
-.next/build-manifest.json
