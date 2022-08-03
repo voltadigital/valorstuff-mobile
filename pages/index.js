@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <html>
       <Head>
-      <link href="tailwind.css" rel="stylesheet"></link>
+      
       </Head>
       <body>
         <main>
