@@ -3,11 +3,10 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <html>
+    <div>
       <Head>
-      
+        <link rel='stylesheet' href='tailwind.css' ></link>
       </Head>
-      <body>
         <main>
          <div>
 
@@ -19,7 +18,7 @@ export default function Home() {
             </div>
             <div className='container block m-auto'>
               <img></img>
-              <p className='m-auto'>idk</p>
+              <p className='m-auto'>Rank</p>
             </div>
             <div className='container block m-auto'>
               <img></img>
@@ -27,10 +26,6 @@ export default function Home() {
              </div>
          </div>
         </main>
-        <div>
-          
-        </div>
-      </body>
-    </html>
+    </div>
   )
 }
