@@ -1,5 +1,7 @@
 {
-  "name": "valorstuff",
-  "integrations": {},
+  "name": "ValorStuff",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }
