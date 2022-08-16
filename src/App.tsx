@@ -15,6 +15,12 @@ import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 
+import * as Sentry from '@sentry/capacitor';
+// The example is using Angular, Import '@sentry/vue' or '@sentry/react' when using a Sibling different than Angular.
+import * as SentrySibling from '@sentry/react';
+// For automatic instrumentation (highly recommended)
+import { BrowserTracing } from '@sentry/tracing';
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -36,7 +42,24 @@ import './theme/variables.css';
 
 setupIonicReact();
 
-
+Sentry.init(
+  {
+    dsn: 'https://c72cf795e5b64c9eab015776ba981f00@o1349792.ingest.sentry.io/6648628',
+    // To set your release and dist versions
+    release: 'my-project-name@' + process.env.npm_package_version,
+    dist: '1',
+    // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+    // We recommend adjusting this value in production.
+    tracesSampleRate: 1.0,
+    integrations: [
+      new BrowserTracing({
+        tracingOrigins: ['localhost', 'https://yourserver.io/api'],
+      }),
+    ]
+  },
+  // Forward the init method to the sibling Framework.
+  SentrySibling.init
+);
 
 const App: React.FC = () =>  (
   <IonApp>
