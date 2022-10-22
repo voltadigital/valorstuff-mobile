@@ -2,7 +2,7 @@ import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonIcon, IonLabel, IonButton } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
-
+import { showReportDialog } from '@sentry/react';
 
 
 const Tab1: React.FC = () => {
@@ -16,12 +16,11 @@ const Tab1: React.FC = () => {
       <IonContent fullscreen>
         <IonCard>
           <IonCardHeader>
-            <IonCardSubtitle>Destination</IonCardSubtitle>
-            <IonCardTitle>Madison, WI</IonCardTitle>
+            <IonCardSubtitle>Item Level</IonCardSubtitle>
+            <IonCardTitle>Item</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>
-            Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
-            Wisconsin Territory in 1836.
+            Item Price
           </IonCardContent>
         </IonCard>
       </IonContent>
