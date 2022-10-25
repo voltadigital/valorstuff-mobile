@@ -10,10 +10,18 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { Database, Storage } from '@ionic/storage';
+
+import { useEffect, useState } from 'react';
+
 import { albumsOutline, bag, bagOutline, ellipse, informationCircleOutline, personCircleOutline, square, triangle } from 'ionicons/icons';
+
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
+import LoginPage from './pages/login';
+
+import Tabs from './components/tabs';
 
 import * as Sentry from '@sentry/capacitor';
 // The example is using Angular, Import '@sentry/vue' or '@sentry/react' when using a Sibling different than Angular.
@@ -53,49 +61,54 @@ Sentry.init(
     tracesSampleRate: 1.0,
     integrations: [
       new BrowserTracing({
-        tracingOrigins: ['localhost', 'https://yourserver.io/api'],
+        tracingOrigins: ['localhost', 'https://api.voltadigital.io'],
       }),
     ]
   },
   // Forward the init method to the sibling Framework.
   SentrySibling.init
-);
+)
 
-const App: React.FC = () =>  (
+const App: React.FC = () =>  {
+  const [db, setDb] = useState<Database | null>(null);
+
+  useEffect(() => {
+    async function initDb() {
+      const store = new Storage();
+
+      const db = await store.create();
+
+      setDb(db);
+    }
+
+    initDb();
+  }, []);
+
+  return (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={bagOutline} />
-            <IonLabel>Shop</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={informationCircleOutline} />
-            <IonLabel>Rank</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={personCircleOutline} />
-            <IonLabel>Account</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
+            <IonTabs>
+                <IonRouterOutlet>
+                    <Route exact path="/tab1">
+                        <Tab1 />
+                    </Route>
+
+                    <Route exact path="/tab2">
+                        <Tab2 />
+                    </Route>
+
+                    <Route path="/tab3">
+                        <Tab3 />
+                    </Route>
+
+                    <Route exact path="/">
+                        <Redirect to="/tab1" />
+                    </Route>
+
+                </IonRouterOutlet>
+            </IonTabs>
+      </IonReactRouter>
   </IonApp>
-);
+)};
 
 export default App;
